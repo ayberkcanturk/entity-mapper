@@ -28,8 +28,6 @@ namespace EntityMapper.Default
         {
             object sourceValue = ReflectionHelper.GetPropertyValue(mapper.sourceModel, ReflectionHelper.GetMemberInfo(sourceProperty).Member.Name);
 
-            //Alternative
-            //PropertyInfo resultPropertyInfo = mapper.resultPropertyInfos.Where(x => x.Name == ReflectionHelper.GetMemberInfo(resultProperty).Member.Name).FirstOrDefault();
             PropertyInfo resultPropertyInfo = ReflectionHelper.GetPropertyInfo(typeof(UResult), resultProperty);
 
             if (typeSafe)

@@ -80,6 +80,5 @@ namespace EntityMapper.Helper
 
             return memberExpr;
         }
-
     }
 }
