@@ -68,7 +68,7 @@ Usage:
     Alien robot = mapper.AutoMap(human, 3).Result();
 #
     
-#region Auto Mapping - Manual Mapping Fluent
+#Auto Mapping - Manual Mapping Fluent
     EntityMapper.Default.AutoObjectMapper<Human, Robot> mapper = new Default.AutoObjectMapper<Human, Robot>();
     Robot robot = mapper.AutoMap(human).ManualMap(human).ManualPropertyMap(x=>x.Name, y=>y.Name).FinishManuelMapping().Result();
 #
