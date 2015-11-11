@@ -9,6 +9,7 @@ namespace EntityMapper.Demo
 {
     class Program
     {
+        //Hello World
         static void Main(string[] args)
         {
             Human human = new Human();
