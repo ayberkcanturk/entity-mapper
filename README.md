@@ -46,6 +46,7 @@ Usage:
 #
     
 #Manual Mapping
+    EntityMapper.Default.AutoObjectMapper<Human, Robot> mapper = new Default.AutoObjectMapper<Human, Robot>();
     Robot robot = mapper.ManualMap(human)
     .ManualPropertyMap(x => x.Age, y => y.Age)
     .ManualPropertyMap(x => x.Name, y => y.Name)
@@ -54,6 +55,7 @@ Usage:
 #
     
 #Manual Mapping (Type Safe Property Disabled)
+    EntityMapper.Default.AutoObjectMapper<Human, Animal> mapper = new Default.AutoObjectMapper<Human, Animal>();
     Animal robot = mapper.ManualMap(human)
     .ManualPropertyMap(x => x.Age, y => y.animalAge, false) --> Type Safe
     .ManualPropertyMap(x => x.Name, y => y.aminalName)
@@ -63,10 +65,10 @@ Usage:
     
 #Fuzzy Mapping by Levenshtein Distance
     EntityMapper.Default.AutoObjectMapper<Human, Alien> mapper = new Default.AutoObjectMapper<Human, Alien>();
-    Alien robot = mapper3.AutoMap(human, 3).Result();
+    Alien robot = mapper.AutoMap(human, 3).Result();
 #
     
 #region Auto Mapping - Manual Mapping Fluent
-EntityMapper.Default.AutoObjectMapper<Human, Robot> mapper = new Default.AutoObjectMapper<Human, Robot>();
-Robot robot = mapper4.AutoMap(human).ManualMap(human).ManualPropertyMap(x=>x.Name, y=>y.Name).FinishManuelMapping().Result();
+    EntityMapper.Default.AutoObjectMapper<Human, Robot> mapper = new Default.AutoObjectMapper<Human, Robot>();
+    Robot robot = mapper.AutoMap(human).ManualMap(human).ManualPropertyMap(x=>x.Name, y=>y.Name).FinishManuelMapping().Result();
 #
