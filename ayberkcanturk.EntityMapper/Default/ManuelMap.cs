@@ -26,30 +26,17 @@ namespace EntityMapper.Default
 
         public ManuelMap<TSource, UResult> ManualPropertyMap<TType>(Expression<Func<TSource, TType>> sourceProperty, Expression<Func<UResult, TType>> resultProperty, bool typeSafe = true)
         {
-            object sourceValue;
-            string sourcePropertyName = string.Empty;
-            string resultPropertyName = string.Empty;
+            object sourceValue = ReflectionHelper.GetPropertyValue(mapper.sourceModel, ReflectionHelper.GetMemberInfo(sourceProperty).Member.Name);
 
-            foreach (PropertyInfo sourcePropertyInfo in mapper.sourcePropertyInfos)
+            //Alternative
+            //PropertyInfo resultPropertyInfo = mapper.resultPropertyInfos.Where(x => x.Name == ReflectionHelper.GetMemberInfo(resultProperty).Member.Name).FirstOrDefault();
+            PropertyInfo resultPropertyInfo = ReflectionHelper.GetPropertyInfo(typeof(UResult), resultProperty);
+
+            if (typeSafe)
+                resultPropertyInfo.SetValue(mapper.resultInstance, sourceValue, null);
+            else
             {
-                sourceValue = ReflectionHelper.GetPropertyValue(mapper.sourceModel, sourcePropertyInfo.Name);
-                Debug.WriteLine(sourcePropertyInfo.Name + ":" + sourceValue);
-
-                foreach (PropertyInfo resultPropertyInfo in mapper.resultPropertyInfos)
-                {
-                    sourcePropertyName = ReflectionHelper.GetMemberInfo(sourceProperty).Member.Name;
-                    resultPropertyName = ReflectionHelper.GetMemberInfo(resultProperty).Member.Name;
-
-                    if (sourcePropertyName != sourcePropertyInfo.Name || resultPropertyName != resultPropertyInfo.Name)
-                        continue;
-
-                    if (typeSafe)
-                        resultPropertyInfo.SetValue(mapper.resultInstance, sourceValue, null);
-                    else
-                    {
-                        resultPropertyInfo.SetValue(mapper.resultInstance, Convert.ChangeType(sourceValue, resultPropertyInfo.PropertyType) , null);
-                    }
-                }
+                resultPropertyInfo.SetValue(mapper.resultInstance, Convert.ChangeType(sourceValue, resultPropertyInfo.PropertyType), null);
             }
 
             return this;
