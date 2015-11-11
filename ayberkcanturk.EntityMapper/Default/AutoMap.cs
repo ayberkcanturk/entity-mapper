@@ -56,7 +56,7 @@ namespace EntityMapper.Default
                     }
                     else
                     {
-                        if (Default.LevenshteinDistance.Compute(sourcePropertyInfo.Name, resultPropertyInfo.Name) > levenshteinDistance)
+                        if (Helper.LevenshteinDistance.Compute(sourcePropertyInfo.Name, resultPropertyInfo.Name) > levenshteinDistance)
                             continue;
                     }
 

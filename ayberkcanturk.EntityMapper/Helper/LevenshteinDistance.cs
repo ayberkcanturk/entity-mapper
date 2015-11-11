@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntityMapper.Default
+namespace EntityMapper.Helper
 {
     public static class LevenshteinDistance
     {

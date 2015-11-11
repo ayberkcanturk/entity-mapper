@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default\AutoMap.cs" />
-    <Compile Include="Default\LevenshteinDistance.cs" />
+    <Compile Include="Helper\LevenshteinDistance.cs" />
     <Compile Include="Default\ManuelMap.cs" />
     <Compile Include="Core\IEntityMapper.cs" />
     <Compile Include="Default\EntityMapper.cs" />
