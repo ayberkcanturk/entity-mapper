@@ -42,8 +42,8 @@
     <Compile Include="Default\AutoMap.cs" />
     <Compile Include="Default\LevenshteinDistance.cs" />
     <Compile Include="Default\ManuelMap.cs" />
-    <Compile Include="Core\IAutoObjectMapper.cs" />
-    <Compile Include="Default\AutoObjectMapper.cs" />
+    <Compile Include="Core\IEntityMapper.cs" />
+    <Compile Include="Default\EntityMapper.cs" />
     <Compile Include="Helper\ReflectionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

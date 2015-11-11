@@ -16,7 +16,7 @@ namespace EntityMapper.Demo
             human.Age = 29;
             human.Sex = 'M';
 
-            EntityMapper.Default.AutoObjectMapper<Human, Robot> mapper = new Default.AutoObjectMapper<Human, Robot>();
+            EntityMapper.Default.EntityMapper<Human, Robot> mapper = new Default.EntityMapper<Human, Robot>();
             
             Robot robot = mapper.AutoMap(human).Result();
 
@@ -26,7 +26,7 @@ namespace EntityMapper.Demo
                 .FinishManuelMapping()
                 .Result();
 
-            EntityMapper.Default.AutoObjectMapper<Human, Animal> mapper2 = new Default.AutoObjectMapper<Human, Animal>();
+            EntityMapper.Default.EntityMapper<Human, Animal> mapper2 = new Default.EntityMapper<Human, Animal>();
 
             Animal robot3 = mapper2.ManualMap(human)
                 .ManualPropertyMap(x => x.Age, y => y.animalAge, false)
@@ -34,10 +34,10 @@ namespace EntityMapper.Demo
                 .FinishManuelMapping()
                 .Result();
 
-            EntityMapper.Default.AutoObjectMapper<Human, Alien> mapper3 = new Default.AutoObjectMapper<Human, Alien>();
+            EntityMapper.Default.EntityMapper<Human, Alien> mapper3 = new Default.EntityMapper<Human, Alien>();
             Alien robot4 = mapper3.AutoMap(human, 3).Result();
 
-            EntityMapper.Default.AutoObjectMapper<Human, Robot> mapper4 = new Default.AutoObjectMapper<Human, Robot>();
+            EntityMapper.Default.EntityMapper<Human, Robot> mapper4 = new Default.EntityMapper<Human, Robot>();
             Robot robot5 = mapper4.AutoMap(human).ManualMap(human).ManualPropertyMap(x=>x.Name, y=>y.Name).FinishManuelMapping().Result();
 
             Human human2 = new Human();

@@ -15,8 +15,8 @@ namespace EntityMapper.Default
         where TSource : class
         where UResult : class
     {
-        private readonly AutoObjectMapper<TSource, UResult> mapper;
-        public ManuelMap(AutoObjectMapper<TSource, UResult> mapper)
+        private readonly EntityMapper<TSource, UResult> mapper;
+        public ManuelMap(EntityMapper<TSource, UResult> mapper)
         {
             this.mapper = mapper;
 
@@ -42,7 +42,7 @@ namespace EntityMapper.Default
             return this;
         }
 
-        public AutoObjectMapper<TSource, UResult> FinishManuelMapping()
+        public EntityMapper<TSource, UResult> FinishManuelMapping()
         {
             return mapper;
         }

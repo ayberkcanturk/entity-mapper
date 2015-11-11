@@ -7,11 +7,11 @@ using EntityMapper.Default;
 
 namespace EntityMapper.Core
 {
-    public interface IAutoObjectMapper<TSource, UResult>
+    public interface IEntityMapper<TSource, UResult>
         where TSource : class
         where UResult : class
     {
-        AutoObjectMapper<TSource, UResult> AutoMap(TSource model, int levenshteinDistance = 0);
+        EntityMapper<TSource, UResult> AutoMap(TSource model, int levenshteinDistance = 0);
         ManuelMap<TSource, UResult> ManualMap(TSource model);
         UResult Result();
         void Dispose();

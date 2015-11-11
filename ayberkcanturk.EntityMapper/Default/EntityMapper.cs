@@ -10,7 +10,7 @@ using EntityMapper.Core;
 
 namespace EntityMapper.Default
 {
-    public class AutoObjectMapper<TSource, UResult> : IAutoObjectMapper<TSource, UResult>, IDisposable
+    public class EntityMapper<TSource, UResult> : IEntityMapper<TSource, UResult>, IDisposable
         where TSource : class
         where UResult : class
     {
@@ -23,13 +23,13 @@ namespace EntityMapper.Default
         private AutoMap<TSource, UResult> autoMap;
         private ManuelMap<TSource, UResult> manuelMap;
 
-        public AutoObjectMapper()
+        public EntityMapper()
         {
             sourcePropertyInfos = typeof(TSource).GetProperties(BindingFlags.Public | BindingFlags.Instance);
             resultPropertyInfos = typeof(UResult).GetProperties(BindingFlags.Public | BindingFlags.Instance);
         }
 
-        public AutoObjectMapper<TSource, UResult> AutoMap(TSource model = null, int levenshteinDistance = 0)
+        public EntityMapper<TSource, UResult> AutoMap(TSource model = null, int levenshteinDistance = 0)
         {
             if (sourceModel == null)
                 sourceModel = model;

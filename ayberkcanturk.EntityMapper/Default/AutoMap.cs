@@ -15,7 +15,7 @@ namespace EntityMapper.Default
         where TSource : class
         where UResult : class
     {
-        private readonly AutoObjectMapper<TSource, UResult> mapper;
+        private readonly EntityMapper<TSource, UResult> mapper;
 
         private bool LevenshteinDistanceEnabled = false;
 
@@ -31,13 +31,13 @@ namespace EntityMapper.Default
             }
         }
 
-        public AutoMap(AutoObjectMapper<TSource, UResult> mapper, int levenshteinDistance = 0)
+        public AutoMap(EntityMapper<TSource, UResult> mapper, int levenshteinDistance = 0)
         {
             this.mapper = mapper;
             this.levenshteinDistance = levenshteinDistance;
         }
 
-        public AutoObjectMapper<TSource, UResult> Map(TSource model)
+        public EntityMapper<TSource, UResult> Map(TSource model)
         {
             if (mapper.resultInstance == null)
                 mapper.resultInstance = Activator.CreateInstance(typeof(UResult));
