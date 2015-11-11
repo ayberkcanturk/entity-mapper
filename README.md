@@ -57,7 +57,7 @@ Usage:
 #Manual Mapping (Type Safe Property Disabled)
     EntityMapper.Default.AutoObjectMapper<Human, Animal> mapper = new Default.AutoObjectMapper<Human, Animal>();
     Animal robot = mapper.ManualMap(human)
-    .ManualPropertyMap(x => x.Age, y => y.animalAge, false) --> Type Safe
+    .ManualPropertyMap(x => x.Age, y => y.animalAge, false) //Type Safety disabled by false boolean
     .ManualPropertyMap(x => x.Name, y => y.aminalName)
     .FinishManuelMapping()
     .Result();
