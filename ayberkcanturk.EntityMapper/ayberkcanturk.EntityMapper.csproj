@@ -39,13 +39,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default\AutoMap.cs" />
+    <Compile Include="Core\IAutoMapCollection.cs" />
+    <Compile Include="Core\IAutoMapInstance.cs" />
+    <Compile Include="Core\IManualMapCollection.cs" />
+    <Compile Include="Core\IManualMapInstance.cs" />
+    <Compile Include="Core\IMapperCollection.cs" />
+    <Compile Include="Core\IMapperInstance.cs" />
+    <Compile Include="Default\AutoMapCollectionAdapter.cs" />
+    <Compile Include="Default\AutoMapInstanceAdapter.cs" />
+    <Compile Include="Default\ManualMapCollectionAdapter.cs" />
+    <Compile Include="Default\ManualMapInstanceAdapter.cs" />
     <Compile Include="Helper\LevenshteinDistance.cs" />
-    <Compile Include="Default\ManuelMap.cs" />
     <Compile Include="Core\IEntityMapper.cs" />
     <Compile Include="Default\EntityMapper.cs" />
     <Compile Include="Helper\ReflectionHelper.cs" />
+    <Compile Include="Model\MappedValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Base\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

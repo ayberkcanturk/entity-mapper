@@ -14,49 +14,37 @@ namespace EntityMapper.Default
         where TSource : class
         where UResult : class
     {
-        internal object resultInstance;
-        internal TSource sourceModel;
-
-        internal PropertyInfo[] sourcePropertyInfos;
-        internal PropertyInfo[] resultPropertyInfos;
-
-        private AutoMap<TSource, UResult> autoMap;
-        private ManuelMap<TSource, UResult> manuelMap;
 
         public EntityMapper()
         {
-            sourcePropertyInfos = typeof(TSource).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            resultPropertyInfos = typeof(UResult).GetProperties(BindingFlags.Public | BindingFlags.Instance);
         }
 
-        public EntityMapper<TSource, UResult> AutoMap(TSource model = null, int levenshteinDistance = 0)
+        public IAutoMapInstance<TSource, UResult> AutoMap(TSource model = null, int levenshteinDistance = 0)
         {
-            if (sourceModel == null)
-                sourceModel = model;
+            AutoMapInstanceAdapter<TSource, UResult> autoMap = new AutoMapInstanceAdapter<TSource, UResult>(model, levenshteinDistance);
 
-            autoMap = new AutoMap<TSource, UResult>(this, levenshteinDistance);
-
-            return autoMap.Map(model);
+            return autoMap;
         }
 
-        public ManuelMap<TSource, UResult> ManualMap(TSource model = null)
+        public IAutoMapCollection<TSource, UResult> AutoMap(IEnumerable<TSource> model = null, int levenshteinDistance = 0)
         {
-            if (sourceModel == null)
-                sourceModel = model;
-            
-            manuelMap = new ManuelMap<TSource, UResult>(this);
+            AutoMapCollectionAdapter<TSource, UResult> autoMap = new AutoMapCollectionAdapter<TSource, UResult>(model, levenshteinDistance);
+
+            return autoMap;
+        }
+
+        public IManualMapInstance<TSource, UResult> ManualMap(TSource model)
+        {
+            IManualMapInstance<TSource, UResult> manuelMap = new ManualMapInstanceAdapter<TSource, UResult>(model);
 
             return manuelMap;
         }
 
-        public UResult Result()
+        public IManualMapCollection<TSource, UResult> ManualMap(IEnumerable<TSource> model)
         {
-            var result = (UResult)resultInstance;
-            
-            resultInstance = null;
-            sourceModel = null;
+            IManualMapCollection<TSource, UResult> manuelMap = new ManualMapCollectionAdapter<TSource, UResult>(model);
 
-            return result;
+            return manuelMap;
         }
 
         public void Dispose()
@@ -67,23 +55,6 @@ namespace EntityMapper.Default
 
         private void Dispose(bool p)
         {
-            if (resultInstance != null)
-                resultInstance = null;
-
-            if (sourceModel != null)
-                sourceModel = null;
-
-            if (sourcePropertyInfos != null)
-                sourcePropertyInfos = null;
-
-            if (resultPropertyInfos != null)
-                resultPropertyInfos = null;
-
-            if (autoMap != null)
-                autoMap = null;
-
-            if (manuelMap != null)
-                manuelMap = null;
         }
     }
 }

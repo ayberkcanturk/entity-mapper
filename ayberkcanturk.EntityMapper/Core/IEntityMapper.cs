@@ -11,9 +11,10 @@ namespace EntityMapper.Core
         where TSource : class
         where UResult : class
     {
-        EntityMapper<TSource, UResult> AutoMap(TSource model, int levenshteinDistance = 0);
-        ManuelMap<TSource, UResult> ManualMap(TSource model);
-        UResult Result();
+        IAutoMapInstance<TSource, UResult> AutoMap(TSource model, int levenshteinDistance = 0);
+        IAutoMapCollection<TSource, UResult> AutoMap(IEnumerable<TSource> model, int levenshteinDistance = 0);
+        IManualMapInstance<TSource, UResult> ManualMap(TSource model);
+        IManualMapCollection<TSource, UResult> ManualMap(IEnumerable<TSource> model);
         void Dispose();
     }
 }
